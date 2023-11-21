@@ -1,0 +1,21 @@
+Tento kód obsahuje funkci decode, která přijímá zakódovaný text a slovník, a dekóduje zakódovaný text pomocí tohoto slovníku.
+
+Začneme s deklarací typu funkce: decode :: String -> [(Char, String)] -> String. To znamená, že funkce decode očekává jako první argument zakódovaný text typu String, jako druhý argument slovník, který je seznamem dvojic (Char, String), a vrací dekódovaný text typu String.
+
+Následuje definice funkce decode, která volá pomocnou funkci decodeHelper s třemi argumenty: encodedText, dictionary a prázdným řetězcem "".
+
+Pak následuje klauzule where, což je oddělovací část a obsahuje definici funkce decodeHelper. decodeHelper je rekurzivní funkce, která provede vlastní dekódování.
+
+První klauzule decodeHelper je decodeHelper [] _ acc = acc. To znamená, že pokud je vstupní řetězec prázdný, vracíme akumulovaný dekódovaný text acc.
+
+Druhá klauzule decodeHelper (x:xs) dict acc = ... zpracovává vstupní řetězec postupně po jednom písmenu pomocí pattern matchingu. x je první písmeno ve vstupním řetězci encodedText, xs je zbytek řetězce a dict je slovník.
+
+V těle druhé klauzule je podmínka if lookup x dict /= Nothing ... else .... Tato podmínka zjišťuje, zda aktuální písmeno x je ve slovníku dict nebo ne.
+
+Pokud se písmeno x nachází ve slovníku, provede se větev then. lookup x dict vrátí možný překlad originalPair písmene x ze slovníku. Použitím let Just originalPair = lookup x dict rozbalíme hodnotu z Maybe monády, abychom získali pár (Char, String).
+
+Nakonec se provede rekurzivní volání decodeHelper xs dict (acc ++ originalPair), kde xs je zbytek vstupního řetězce, slovník zůstává stejný a aktualizuje se akumulovaný řetězec acc přidáním originalPair, tedy překladu písmene x.
+
+Pokud se písmeno x nenachází ve slovníku, provede se větev else. V tomto případě se provede rekurzivní volání decodeHelper xs dict (acc ++ [x]), kde xs je zbytek vstupního řetězce, slovník zůstává stejný a aktualizuje se akumulovaný řetězec acc přidáním písmene x ve formě listu.
+
+Tímto způsobem se postupně zpracuje celý vstupní řetězec encodedText, překlady se přidávají do akumulovaného řetězce acc, a výsledkem je dekódovaný text.
