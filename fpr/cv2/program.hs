@@ -29,6 +29,9 @@ identify (TextBox n p t) = TextBox n p t
 identify (Button n p t) = Button n p t
 
 insertInto :: Component -> String -> Component -> Component
-insertInto (Container n children) name comp = Container n [insertInto c|c <- children]
+insertInto (Container n children) name comp = 
+    let
+        chs = if n == name then children ++ [comp] else children
+    in Container n [insertInto c name comp | c<-chs]
 insertInto (TextBox n p t) name comp = (TextBox n p t)
 insertInto (Button n p t) name comp = (Button n p t)
