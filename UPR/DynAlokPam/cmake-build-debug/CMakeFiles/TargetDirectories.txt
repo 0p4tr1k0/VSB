@@ -1,0 +1,3 @@
+C:/Users/Patrik/Desktop/VSB/UPR/DynAlokPam/cmake-build-debug/CMakeFiles/DynAlokPam.dir
+C:/Users/Patrik/Desktop/VSB/UPR/DynAlokPam/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Patrik/Desktop/VSB/UPR/DynAlokPam/cmake-build-debug/CMakeFiles/rebuild_cache.dir
