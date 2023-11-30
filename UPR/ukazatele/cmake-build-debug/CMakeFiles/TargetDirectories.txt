@@ -1,0 +1,3 @@
+C:/Users/Patrik/Desktop/VSB/UPR/ukazatele/cmake-build-debug/CMakeFiles/ukazatele.dir
+C:/Users/Patrik/Desktop/VSB/UPR/ukazatele/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Patrik/Desktop/VSB/UPR/ukazatele/cmake-build-debug/CMakeFiles/rebuild_cache.dir

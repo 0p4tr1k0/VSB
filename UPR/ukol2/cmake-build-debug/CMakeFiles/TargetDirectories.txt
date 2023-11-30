@@ -1,0 +1,3 @@
+C:/Users/Patrik/Desktop/VSB/UPR/ukol2/cmake-build-debug/CMakeFiles/ukol2.dir
+C:/Users/Patrik/Desktop/VSB/UPR/ukol2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Patrik/Desktop/VSB/UPR/ukol2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
