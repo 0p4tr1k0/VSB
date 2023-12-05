@@ -160,3 +160,39 @@ countFiles(Directory' _ entries) = sum(map countFiles entries )
 fullNames:: Entry -> [String]
 fullNames (File namef _ _) = ["/"++namef]
 fullNames (Directory' namef entries) =  (map (\x->"/"++namef++x)(concatMap (fullNames) entries))
+
+data Element = Button' {name'::String, text'::String} |Text {name'::String,text'::String} | Panel [Element] deriving (Show)
+
+prikladelement :: Element
+prikladelement = Panel [(Text "Uvod" "Toto je uvod"),(Button' "Odejit" "ze stranky"),(Panel [(Text "text tady" "text tu")])]
+
+
+data Component = 
+    TextBox {name::String,text::String}
+    |Button {name::String, value::String}
+    |Container {name::String, children ::[Component]} deriving(Show)
+
+
+gui::Component
+gui = Container "My App" [
+        Container "Menu" [
+            Button "btn_new" "New",
+            Button "btn_open" "Open",
+            Button "btn_close" "Close"],
+        
+        Container "Body" [TextBox "textbox_1" "Some text goes here"],
+        Container "Footer" []] 
+
+listAllButtons ::Component -> [Component]
+listAllButtons (Button name value) = [(Button name value)]
+listAllButtons (TextBox name value) = []
+listAllButtons (Container _ children) = concatMap (listAllButtons) (children)
+
+isButton::Component -> Bool 
+isButton (Button _ _) = True
+isButton _ = False
+
+removeAllButtons :: Component ->Component
+removeAllButtons (Button name value) = Button name value
+removeAllButtons (TextBox name value) = TextBox name value
+removeAllButtons (Container name children) = Container name (filter (\x->not(isButton x)) (map (removeAllButtons) children))
