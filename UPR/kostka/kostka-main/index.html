@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kostka</title>
+        
+        <link href="css/upravy.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <audio id = diceRoll>
+            <source src ="zvuk/rollout.mp3" type="audio/mpeg">
+        </audio>
+        <audio id = jedna>
+            <source src ="zvuk/jedna.mp3" type="audio/mpeg">
+        </audio>
+        <audio id = sest>
+            <source src ="zvuk/sest.mp3" type="audio/mpeg">
+        </audio>
+        
+    </head>
+    <header>
+        <h1 class="text-center">Kostka</h1>
+        
+        </header>
+    <body background="img/poz.jpg">
+        <script>document.body.className += ' fade-out';</script>
+        <div class="container" style="text-align: center; margin-top: 5em;"> 
+        <div class="container">
+            <figure>
+                <img id="cube" src="img/kostka6.png" alt="Kostka">
+            </figure>
+            <div id="result" class="text">Výsledek</div>
+            <button id="game" class="myButton">Hraj</button>
+        </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/game.js"></script>
+    </body>
+    <footer>
+        <p>&copy Patrik Mlčák IT2</p>
+    </footer>
+</html>
