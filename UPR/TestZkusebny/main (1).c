@@ -8,16 +8,17 @@ typedef struct
     char mesto[100];
     int zlobivost;
     int pocetDarku;
-}DITE;
+} DITE;
 
-void nacteniDoStruktury(DITE *poleDeti, int pocetDeti){
+void nacteniDoStruktury(DITE *poleDeti, int pocetDeti)
+{
     char buffer[100];
     char *pch;
     int pocet = 0;
 
     for (int i = 0; i < pocetDeti; i++)
     {
-        fgets(buffer,sizeof(buffer),stdin);
+        fgets(buffer, sizeof(buffer), stdin);
         pch = strtok(buffer, ",");
         while (pch != NULL)
         {
@@ -25,6 +26,7 @@ void nacteniDoStruktury(DITE *poleDeti, int pocetDeti){
             {
             case 0:
                 strcpy(poleDeti[i].jmeno, pch);
+                // printf("jmeno: %s\n", poleDeti[i].jmeno);
                 break;
             case 1:
                 strcpy(poleDeti[i].mesto, pch);
@@ -38,58 +40,56 @@ void nacteniDoStruktury(DITE *poleDeti, int pocetDeti){
             }
             pocet++;
             pch = strtok(NULL, ",");
-            //printf("mesto: %s\n", poleDeti[i].mesto);
         }
         pocet = 0;
     }
-    
-
 }
-
-
 
 int main(int argc, char const *argv[])
 {
     int pocetDeti = 0;
     int pocetDotazu = 0;
 
-    if(argc = 3){
+    if (argc = 3)
+    {
         pocetDeti = atoi(argv[1]);
         pocetDotazu = atoi(argv[2]);
-    }else{
+    }
+    else
+    {
         printf("nebyly zadany parametry\n");
     }
-    DITE *poleDeti = (DITE*)malloc(pocetDeti * sizeof(DITE));
-    //DITE poleDeti[200];
+    DITE *poleDeti = (DITE *)malloc(pocetDeti * sizeof(DITE));
+    // DITE poleDeti[200];
     nacteniDoStruktury(poleDeti, pocetDeti);
 
     char buffer[100] = {};
     int found = 0;
 
     for (int i = 0; i < pocetDotazu; i++)
-    {   
+    {
+        found = 0;
         char znak[2];
         fgets(buffer, sizeof(buffer), stdin);
         strtok(buffer, ",");
-        strcpy(znak,strtok(NULL, ","));
-        printf("pch: %s", znak);
+        strcpy(znak, strtok(NULL, "\n"));
+        //printf("znak: %s", znak);
 
         for (int i = 0; i < pocetDeti; i++)
-        {
-        if(strstr(poleDeti[i].jmeno, znak) != NULL){
-            found++;
-            printf("%s,%d\n", poleDeti[i].jmeno, poleDeti[i].zlobivost);
-            break;
+        {   
+            if (strstr(poleDeti[i].jmeno, znak) != NULL)
+            {
+                found++;
+                printf("%s,%d\n", poleDeti[i].jmeno, poleDeti[i].zlobivost);
+                break;
             }
         }
-        if(found == 0){
+        if (found == 0)
+        {
             printf("<not-found>");
         }
+
     }
-    
-
-
-
 
     free(poleDeti);
     return 0;
