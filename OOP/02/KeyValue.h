@@ -41,10 +41,10 @@ KeyValue* KeyValue::CreateNext(int k, double v){
 
 inline int KeyValue::GetKey()
 {
-    return 5;
+    return this->key;
 }
 
 inline double KeyValue::GetValue()
 {
-    return 0.0;
+    return this->value;
 }
