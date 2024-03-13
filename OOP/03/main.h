@@ -64,13 +64,14 @@ KeyValue* KeyValues::SearchObject(int k){
 }
 
 KeyValue* KeyValues::RemoveObject(int k){
-    for (int i = 0; i < this->count; i++){
-        if(this->keyValues[i]->GetValue() == k){
-            return RemoveObject(i);
-        }
+    if (k < this->count){
+        delete this->keyValues[k];
+        this->count--;
+        return this->keyValues[k];
+    }else{
+        return nullptr;
     }
-    return nullptr;
-    
+
 }
 
 KeyValue::KeyValue(int k, double v){
