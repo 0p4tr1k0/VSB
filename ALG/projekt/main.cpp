@@ -28,7 +28,7 @@ struct TreeNode {
  * @param index Index vstupního řetězce, od kterého začne rekonstrukce.
  * @return Ukazatel na kořen rekonstruovaného binárního stromu.
  */
-TreeNode* reconstructTree(string input, int& index) {
+TreeNode* reconstructTree(const string& input, int& index) {
     if (input.empty() || index >= input.size()) return nullptr;
 
     // Načtení aktuálního čísla
@@ -55,6 +55,30 @@ TreeNode* reconstructTree(string input, int& index) {
     }
 
     return root;
+}
+
+/**
+ * Funkce pro vytvoření řetězce z binárního stromu.
+ * @param root Kořen binárního stromu.
+ * @return Řetězec reprezentující binární strom.
+ */
+string treeToString(TreeNode* root) {
+    if (!root) return "";
+
+    string result = to_string(root->data);
+
+    if (root->left || root->right) {
+        result += "(";
+        result += treeToString(root->left);
+        result += ")";
+        if (root->right) {
+            result += "(";
+            result += treeToString(root->right);
+            result += ")";
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -117,8 +141,6 @@ int main() {
     string input = "4(2(3)(1))(6(5))";
     //string input = "10(9(8)(7(6(5))))";
     //string input = "9(8(7(6)(5(4))3))";
-    
-    
 
     // Index pro rekonstrukci stromu
     int index = 0;
@@ -126,15 +148,18 @@ int main() {
     // Rekonstrukce stromu
     TreeNode* root = reconstructTree(input, index);
 
+    // Výpis stromu ve formě řetězce
+    string output = treeToString(root);
+    cout << "Reconstructed string from tree: " << output << endl;
+
     // Výpis stromu
-    cout << "Horizontal tree:" << endl;
+    cout << "\nHorizontal tree:\n";
     cout << treeToHorizontalString(root);
 
-    cout << "\nVertical tree:" << endl;
+    cout << "\nVertical tree:\n";
     string verticalOutput;
     treeToVerticalString(root, verticalOutput);
     cout << verticalOutput;
 
     return 0;
 }
-
