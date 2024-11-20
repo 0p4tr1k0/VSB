@@ -1,0 +1,3 @@
+cislo 10
+cislo 10
+cislo 10
