@@ -2,27 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
-   char  idlength;
-   char  colourmaptype;
-   char  datatypecode;
-   char  colourmaporigin[2];
-   char  colourmaplength[2];
-   char  colourmapdepth;
-   char  x_origin[2];
-   char  y_origin[2];
-   char width[2];
-   char height[2];
-   char  bitsperpixel;
-   char  imagedescriptor;
-} TGA_HEADER;
-
-typedef struct{
-    char B;
-    char G;
-    char R;
-} PIXEL;
-
+#include "tga.h"
+#include "tga.c"
 
 int main(){
 
@@ -52,17 +33,11 @@ int main(){
         
     }
     
-
-    FILE* image = fopen("image.tga", "wb");
-
-    fwrite(&header, sizeof(header), 1, image);
-    fwrite(pixels, sizeof(PIXEL), width * height, image);
-
-
-    fclose(image);
+    save_tga(header, pixels, "image.tga");
 
     free(pixels);
     pixels= NULL;
 
     return 0;
 }
+
